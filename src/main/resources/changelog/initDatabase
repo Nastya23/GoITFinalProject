@@ -1,0 +1,218 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <changeSet id="1" author="Anastasiia">
+        <createTable tableName="departments">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(225)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="1" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="departments" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+    <changeSet id="2" author="Anastasiia">
+        <createTable tableName="employees">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="middle_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="registered_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="position_id" type="int">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="department_id" type="int">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="status_id" type="int">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="user_id" type="int">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="2" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="employees" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+    <changeSet id="3" author="Anastasiia">
+        <createTable tableName="events">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="event_date" type="datetime">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hours" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_user_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="3" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="events" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+    <changeSet id="4" author="Anastasiia">
+        <createTable tableName="event_types">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rate" type="decimal">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="4" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="event_types" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+    <changeSet id="5" author="Anastasiia">
+        <createTable tableName="positions">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="hour_salary" type="decimal">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="5" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="positions" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+    <changeSet id="6" author="Anastasiia">
+        <createTable tableName="roles">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="6" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="roles" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+    <changeSet id="7" author="Anastasiia">
+        <createTable tableName="salaries">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="month" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="year" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salary_sum" type="decimal">
+                <constraints nullable="true"/>
+            </column>
+            <column name="employee_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="7" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="salaries" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+    <changeSet id="8" author="Anastasiia">
+        <createTable tableName="statuses">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="type" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="8" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="statuses" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+    <changeSet id="9" author="Anastasiia">
+        <createTable tableName="users">
+            <column name="id" type="int" autoIncrement="true" startWith="1" incrementBy="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="user_name" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="enabled" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="9" author="Anastasiia">-->
+        <!--<addPrimaryKey tableName="users" columnNames="ID" />-->
+    <!--</changeSet>-->
+
+
+    <changeSet id="10" author="Anastasiia">
+        <addForeignKeyConstraint baseTableName="employees" baseColumnNames="event_id"
+                                 constraintName="fk_employee_events"
+                                 referencedTableName="events"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="NO ACTION"/>
+    </changeSet>
+
+    <changeSet id="11" author="Anastasiia">
+        <addForeignKeyConstraint baseTableName="employees" baseColumnNames="user_id"
+                                 constraintName="fk_employees_users"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+    <changeSet id="12" author="Anastasiia">
+        <addForeignKeyConstraint baseTableName="users" baseColumnNames="role_id"
+                                 constraintName="fk_user_roles"
+                                 referencedTableName="roles"
+                                 referencedColumnNames="id"
+                                 onUpdate="CASCADE"
+                                 onDelete="NO ACTION"/>
+    </changeSet>
+
+</databaseChangeLog>

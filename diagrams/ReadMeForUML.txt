@@ -1,0 +1,1 @@
+1. To open UML diagram GoITFinalUML.xml you should go https://www.draw.io/, select File -> Open from -> Device and select .xml file on you PC.

@@ -1,0 +1,83 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+
+    <!--insert data to the departments table -->
+    <changeSet id="1" author="Anastasiia" >
+        <insert tableName="departments">
+            <column name="name" value="HTML_CODER"/>
+        </insert>
+        <insert tableName="departments">
+            <column name="name" value="JAVA_CODER"/>
+        </insert>
+        <insert tableName="departments">
+            <column name="name" value="C++_CODER"/>
+        </insert>
+    </changeSet>
+
+    <!--insert data to the employees table-->
+    <changeSet id="2" author="Anastasiia" >
+        <insert tableName="employees">
+            <column name="name" value="Nastya"/>
+            <column name="surname" value="Degtyarova"/>
+            <column name="email" value="Degtjarova@gmail.com"/>
+            <column name="registered_date" value="now()"/>
+            <column name="position_id" value="1"/>
+            <column name="department_id" value="1"/>
+            <column name="status_id" value="1"/>
+            <column name="user_id" value="3"/>
+        </insert>
+    </changeSet>
+
+    <!--insert data to the event table -->
+    <changeSet id="3" author="Anastasiia" >
+        <insert tableName="events">
+            <column name="event_date" value="now()"/>
+            <column name="hours" value="8"/>
+            <column name="type_id" value="1"/>
+            <column name="created_user_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <!--insert data to the roles table -->
+    <changeSet id="4" author="Anastasiia" >
+        <insert tableName="roles">
+            <column name="name" value="ROLE_USER"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_MODERATOR"/>
+        </insert>
+        <insert tableName="roles">
+            <column name="name" value="ROLE_ADMIN"/>
+        </insert>
+    </changeSet>
+
+    <!--insert data to the status table -->
+    <changeSet id="5" author="Anastasiia" >
+        <insert tableName="status">
+            <column name="name" value="WORK"/>
+        </insert>
+        <insert tableName="status">
+            <column name="name" value="HOLIDAY"/>
+        </insert>
+        <insert tableName="status">
+            <column name="name" value="SICK"/>
+        </insert>
+    </changeSet>
+
+    <!--insert data to the user table-->
+    <changeSet id="6" author="Anastasiia" >
+        <insert tableName="users">
+            <column name="user_name" value="nastya"/>
+            <column name="password" value="$2a$10$aCMbzEnmUgaROnH4uqQ5v.PYUyrZUneJVs1aoj22tBk7dd5Hk8FYa"/>
+            <column name="enabled" value="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
