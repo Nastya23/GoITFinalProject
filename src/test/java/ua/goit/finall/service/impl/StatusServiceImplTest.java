@@ -20,4 +20,48 @@ public class StatusServiceImplTest {
     @Autowired
     StatusService statusService;
 
+    private Status status;
+
+
+    @Before
+    public void setup() {
+        status = new Status("Nastya");
+
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        status.setName("Nastya");
+    }
+
+    @Test
+    @Transactional
+    public void create() {
+        when(statusRepository.save(status)).thenReturn(status);
+        statusService.save(status);
+
+        verify(statusRepository.save(any(Status.class)));
+
+    }
+
+    @Test
+    @Transactional
+    public void update() {
+        statusService.save(status);
+        status.setName("Wrong");
+        statusService.update(status);
+        statusRepository.save(status);
+        Assert.assertEquals(status.getName() , "Wrong");
+
+    }
+
+    @Test
+    public void delete() {
+        statusService.save(status);
+        statusRepository.save(status);
+        Long id = status.getId();
+        statusService.delete(id);
+        verify(statusRepository, times(1)).delete(status);
+    }
 }

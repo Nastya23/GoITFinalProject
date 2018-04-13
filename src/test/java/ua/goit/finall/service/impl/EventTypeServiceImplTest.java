@@ -20,5 +20,48 @@ public class EventTypeServiceImplTest {
     @Autowired
     EventTypeService eventTypeService;
 
+    private EventType eventType;
 
+
+    @Before
+    public void setup() {
+        eventType = new EventType("Nastya");
+
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        eventType.setName("Nastya");
+    }
+
+    @Test
+    @Transactional
+    public void create() {
+        when(eventTypeRepository.save(eventType)).thenReturn(eventType);
+        eventTypeService.save(eventType);
+
+        verify(eventTypeRepository.save(any(EventType.class)));
+
+    }
+
+    @Test
+    @Transactional
+    public void update() {
+        eventTypeService.save(eventType);
+        eventType.setName("Wrong");
+        eventTypeService.update(eventType);
+        eventTypeRepository.save(eventType);
+        Assert.assertEquals(eventType.getName() , "Wrong");
+
+    }
+
+    @Test
+    public void delete() {
+        eventTypeService.save(eventType);
+        eventTypeRepository.save(eventType);
+        Long id = eventType.getId();
+        eventTypeService.delete(id);
+        verify(eventTypeRepository, times(1)).delete(eventType);
+    }
 }

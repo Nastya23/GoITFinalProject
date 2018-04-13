@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.goit.finall.model.Employee;
@@ -27,6 +28,7 @@ public class EmployeesController {
     @Autowired
     private UserService userService;
 
+    @PreAuthorize("hasRole('ROLE_user')")
     @RequestMapping(value = "/employeeInfo")
     public String employeeInfo(Map<String, Object> model) {
         String userName = getLoggedinUserName();

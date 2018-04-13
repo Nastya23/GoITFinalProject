@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ua.goit.finall.model.Department;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/salaries")
+@Secured({"ROLE_ADMIN", "ROLE_MODERATOR"})
 @Api(value="salaries", description="Operations pertaining to salaries")
 public class SalaryRestController {
 

@@ -1,70 +1,43 @@
 package ua.goit.finall.controller.rest;
 
-/*@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({"classpath:test-context.xml", "classpath:mockTestBeans.xml"})*/
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultMatcher;
+import ua.goit.finall.model.User;
+import ua.goit.finall.service.UserService;
 
+import java.util.Arrays;
+
+import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
+import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringRunner.class)
+@WebMvcTest(value = UserRestController.class)
 public class UserRestControllerTest {
-/*    @InjectMocks
-    private UserController userController;
-
+    @Autowired
     private MockMvc mockMvc;
 
-    @Spy
-    private UserServiceImpl userService;
+    @MockBean
+    private UserService userService;
 
-    @Before
-    public void setup() {
-
-        // this must be called for the @Mock annotations above to be processed
-        // and for the mock service to be injected into the controller under
-        // test.
-        MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+    @Test(expected = IllegalArgumentException.class)
+    public void NullPathVariable() throws Exception {
+        User user = new User();
+        user.setId(1L);
+        when(userService.getById(any())).thenReturn(user);
+        mockMvc.perform(get("/user/{id}"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect((ResultMatcher) jsonPath("$[0].id", is(1)));
     }
-
-    @Test
-    public void testGet() throws Exception {
-
-        int userId = 3;
-
-        mockMvc.perform(
-                get("/user/" + userId))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("data.age", is(15)))
-                .andExpect(jsonPath("data.firstName", is("bob")))
-                .andExpect(jsonPath("data.id", is(userId)))
-                .andExpect(jsonPath("success", is(true)));
-    }
-
-    @Test
-    public void testSave() throws Exception {
-        mockMvc.perform(
-                post("/user")
-                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                        .content(TestUtil.convertObjectToJsonBytes(new User()))
-        )
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("success", is(true)));
-    }
-
-    @Test
-    public void testUpdate() throws Exception {
-        mockMvc.perform(
-                put("/user")
-                        .contentType(TestUtil.APPLICATION_JSON_UTF8)
-                        .content(TestUtil.convertObjectToJsonBytes(new User())))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(jsonPath("success", is(true)));
-    }
-
-    @Test
-    public void testDelete() throws Exception {
-        mockMvc.perform(
-                delete("/user/3"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("success", is(true)));
-    }*/
 }

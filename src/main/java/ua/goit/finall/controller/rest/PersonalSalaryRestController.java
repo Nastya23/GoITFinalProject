@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -25,6 +26,7 @@ import static ua.goit.finall.utils.Utils.getLoggedinUserName;
 
 @RestController
 @RequestMapping(value = "/personalSalaries")
+@Secured({"ROLE_ADMIN", "ROLE_MODERATOR", "USER"})
 @Api(value="personalSalaries", description="Operations pertaining to personal salaries")
 public class PersonalSalaryRestController {
 

@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -47,23 +48,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	
 	@Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS);
+
         http
                 .csrf().disable()
                 .authorizeRequests()
 
                 .antMatchers("/", "/login", "/logout").permitAll()
                 .antMatchers( "/employeeInfo/**").hasAnyRole("USER","MODERATOR","ADMIN")
-                .antMatchers( "/api/personalSalaries/**").hasAnyRole("USER","MODERATOR","ADMIN")
-                .antMatchers( "/api/employees/**").hasAnyRole("MODERATOR","ADMIN")
-                .antMatchers( "/api/departments/**").hasAnyRole("MODERATOR","ADMIN")
-                .antMatchers( "/api/events/**").hasAnyRole("MODERATOR","ADMIN")
-                .antMatchers( "/api/eventTypes/**").hasAnyRole("MODERATOR","ADMIN")
-                .antMatchers( "/api/positions/**").hasAnyRole("MODERATOR","ADMIN")
-                .antMatchers( "/api/salaries/**").hasAnyRole("MODERATOR","ADMIN")
-                .antMatchers( "/api/statuses/**").hasAnyRole("MODERATOR","ADMIN")
-                .antMatchers( "/api/users/**").hasAnyRole("ADMIN")
-                .antMatchers( "/api/roles/**").hasAnyRole("ADMIN")
-                .antMatchers( "/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()//

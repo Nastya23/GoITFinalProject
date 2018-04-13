@@ -35,11 +35,56 @@ public class UserServiceImplTest {
     @Autowired
     private TestEntityManager entityManager;
 
+    private User user;
+
+
+    @Before
+    public void setup() {
+        user = new User("Nastya");
+
+        MockitoAnnotations.initMocks(this);
+    }
+
+    @Before
+    public void setUp() throws Exception {
+        user.setName("Nastya");
+    }
+
     @Test
     public void testExample() throws Exception {
         entityManager.persist(new User("sboot", "1234"));
         User user = userRepository.findByUsername("sboot");
         assertThat(user.getUsername()).isEqualTo("sboot");
         assertThat(user.getPassword()).isEqualTo("1234");
+    }
+
+    @Test
+    @Transactional
+    public void create() {
+        when(userRepository.save(user)).thenReturn(user);
+        userService.save(user);
+
+        verify(userRepository.save(any(User.class)));
+
+    }
+
+    @Test
+    @Transactional
+    public void update() {
+        userService.save(user);
+        user.setName("Wrong");
+        userService.update(user);
+        userRepository.save(user);
+        Assert.assertEquals(user.getName() , "Wrong");
+
+    }
+
+    @Test
+    public void delete() {
+        userService.save(user);
+        userRepository.save(user);
+        Long id = user.getId();
+        userService.delete(id);
+        verify(userRepository, times(1)).delete(user);
     }
 }
