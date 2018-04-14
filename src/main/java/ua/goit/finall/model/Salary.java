@@ -24,25 +24,11 @@ public class Salary extends BaseEntity {
     @Column(name = "SALARY_SUM")
     private BigDecimal salarySum;
 
-    public Salary() {
-    }
-
     public Salary(Employee employee, Integer month, Integer year, BigDecimal salarySum) {
         this.employee = employee;
         this.month = month;
         this.year = year;
         this.salarySum = salarySum;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Salary{");
-        sb.append("id=").append(super.getId());
-        sb.append(", month=").append(month);
-        sb.append(", year=").append(year);
-        sb.append(", salarySum=").append(salarySum);
-        sb.append('}');
-        return sb.toString();
     }
 
     public Employee getEmployee() {
@@ -76,4 +62,17 @@ public class Salary extends BaseEntity {
     public void setSalarySum(BigDecimal salarySum) {
         this.salarySum = salarySum;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Salary{");
+        sb.append("id=").append(super.getId());
+        sb.append(", month=").append(month);
+        sb.append(", year=").append(year);
+        sb.append(", salarySum=").append(salarySum);
+        sb.append('}');
+        return sb.toString();
+    }
+
+
 }

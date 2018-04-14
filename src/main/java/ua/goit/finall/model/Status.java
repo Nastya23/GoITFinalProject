@@ -13,7 +13,12 @@ public class Status extends BaseEntity{
     @Column(name = "TYPE")
     private String type;
 
-    public Status() {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override
@@ -25,12 +30,6 @@ public class Status extends BaseEntity{
         return sb.toString();
     }
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 
 }

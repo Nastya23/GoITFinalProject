@@ -55,30 +55,8 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    public Employee() {
-    }
-
     public Employee(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Employee{");
-        sb.append("id=").append(super.getId());
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", surname='").append(surname).append('\'');
-        sb.append(", middleName='").append(middleName).append('\'');
-        sb.append(", department=").append(department.getName());
-        sb.append(", position=").append(position.getName());
-        sb.append(", eventList=").append(eventList.size());
-        sb.append(", status=").append(status.getType());
-        sb.append(", salary=").append(salary.size());
-        sb.append(", registredDate=").append(registredDate);
-        sb.append(", email='").append(email).append('\'');
-        sb.append(", user=").append(user);
-        sb.append('}');
-        return sb.toString();
     }
 
     public String getName() {
@@ -168,4 +146,25 @@ public class Employee extends BaseEntity {
     public void setSalary(List<Salary> salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Employee{");
+        sb.append("id=").append(super.getId());
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", surname='").append(surname).append('\'');
+        sb.append(", middleName='").append(middleName).append('\'');
+        sb.append(", department=").append(department.getName());
+        sb.append(", position=").append(position.getName());
+        sb.append(", eventList=").append(eventList.size());
+        sb.append(", status=").append(status.getType());
+        sb.append(", salary=").append(salary.size());
+        sb.append(", registredDate=").append(registredDate);
+        sb.append(", email='").append(email).append('\'');
+        sb.append(", user=").append(user);
+        sb.append('}');
+        return sb.toString();
+    }
+
+
 }

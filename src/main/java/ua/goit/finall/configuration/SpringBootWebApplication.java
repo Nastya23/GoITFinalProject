@@ -17,9 +17,5 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SpringBootWebApplication {
     public static void main(String[] args) {
         SpringApplication.run(SpringBootWebApplication.class, args);
-
-        System.out.println("Password 123 encoded : " + new BCryptPasswordEncoder().encode("123"));
-
     }
-
 }

@@ -25,25 +25,11 @@ public class EventType extends BaseEntity {
             this.name = name;
         }
     }
-
     @Column(name = "TYPE")
     private String type;
 
     @Column(name = "RATE")
     private Double rate;
-
-    public EventType() {
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("EventType{");
-        sb.append("id=").append(super.getId());
-        sb.append(", type='").append(type).append('\'');
-        sb.append(", rate=").append(rate);
-        sb.append('}');
-        return sb.toString();
-    }
 
     public String getType() {
         return type;
@@ -61,5 +47,13 @@ public class EventType extends BaseEntity {
         this.rate = rate;
     }
 
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("EventType{");
+        sb.append("id=").append(super.getId());
+        sb.append(", type='").append(type).append('\'');
+        sb.append(", rate=").append(rate);
+        sb.append('}');
+        return sb.toString();
+    }
 }

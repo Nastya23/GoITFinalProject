@@ -16,10 +16,15 @@ public class Department extends BaseEntity{
     @ApiModelProperty(notes = "The department name")
     private String name;
 
-    public Department() {
+    public Department(String name) {
+        this.name = name;
     }
 
-    public Department(String name) {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -32,11 +37,4 @@ public class Department extends BaseEntity{
         return sb.toString();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

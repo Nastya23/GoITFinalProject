@@ -32,25 +32,10 @@ public class User extends BaseEntity{
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User() {
-    }
-
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("User{");
-        sb.append("id=").append(super.getId());
-        sb.append(", username='").append(username).append('\'').append('\n');
-        sb.append(", enabled=").append(enabled);
-        sb.append(", roles=").append(roles);
-        sb.append('}');
-        return sb.toString();
-    }
-
     public String getUsername() {
         return username;
     }
@@ -90,4 +75,16 @@ public class User extends BaseEntity{
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("User{");
+        sb.append("id=").append(super.getId());
+        sb.append(", username='").append(username).append('\'').append('\n');
+        sb.append(", enabled=").append(enabled);
+        sb.append(", roles=").append(roles);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }

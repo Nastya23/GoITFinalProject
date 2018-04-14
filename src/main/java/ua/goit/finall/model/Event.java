@@ -26,27 +26,11 @@ public class Event extends BaseEntity{
     @Column(name = "HOURS")
     private Integer hours;
 
-    public Event() {
-    }
-
-
     public Event(EventType type, User createdByUser, Date eventDate, Integer hours) {
         this.type = type;
         this.createdByUser = createdByUser;
         this.eventDate = eventDate;
         this.hours = hours;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("Event{");
-        sb.append("id=").append(super.getId());
-        sb.append(", type=").append(type);
-        sb.append(", createdByUser=").append(createdByUser);
-        sb.append(", eventDate=").append(eventDate);
-        sb.append(", hours=").append(hours);
-        sb.append('}');
-        return sb.toString();
     }
 
     public EventType getType() {
@@ -80,4 +64,17 @@ public class Event extends BaseEntity{
     public void setHours(Integer hours) {
         this.hours = hours;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Event{");
+        sb.append("id=").append(super.getId());
+        sb.append(", type=").append(type);
+        sb.append(", createdByUser=").append(createdByUser);
+        sb.append(", eventDate=").append(eventDate);
+        sb.append(", hours=").append(hours);
+        sb.append('}');
+        return sb.toString();
+    }
+
 }
